@@ -70,7 +70,7 @@ with st.container():
     col1,col2 = st.columns(2)
     #Code for adding Logo
     with col1:
-        image = Image.open('require/image.png')
+        image = Image.open('image.png')
         st.image(image)
     #Code for Title
     with col2:
@@ -83,7 +83,7 @@ nn = 0
 fig = Figure(width = 550,height = 350)
 
 #reading CSV Files
-temperatureFiles = os.path.join("require/historicalData/temperature*.csv")
+temperatureFiles = os.path.join("historicalData/temperature*.csv")
 temperatureFiles = glob.glob(temperatureFiles)
 temperatureDF = pd.concat(map(pd.read_csv,temperatureFiles),ignore_index = True)
 
