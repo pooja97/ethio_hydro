@@ -141,7 +141,7 @@ temperatureDataFrame = lat_long_process(temperatureDataFrame)
 
 
 #Creating a separate dataframe for lat long values and returning a list of lat_long values
-@st.experimental_memo
+@st.cache
 def lat_long_list_creation(df):
     lat_long_df = df[['lat','long']]
     lat_long_df['lat_long'] = lat_long_df.loc[:,'lat'].astype(str)+','+lat_long_df.loc[:,'long'].astype(str)
