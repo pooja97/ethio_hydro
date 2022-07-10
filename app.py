@@ -23,9 +23,6 @@ import glob
 import os
 
 
-#for filtering the data not related to Ethopia
-from geopy.geocoders import Nominatim
-from geopy.extra.rate_limiter import RateLimiter
 
 #imports for finding the nearest lat long using haversine distance
 from math import radians, cos, sin, asin, sqrt
