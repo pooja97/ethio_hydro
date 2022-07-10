@@ -20,4 +20,4 @@ Pandarallel: pip3 install pandarallel
 plotly: pip3 install plotly
 Altair charts: pip3 install altair
 
-Command to run: `streamlit run main2.py`
+Command to run: `streamlit run app.py`
