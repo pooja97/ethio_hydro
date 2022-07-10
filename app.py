@@ -57,6 +57,11 @@ from pandarallel import pandarallel
 pandarallel.initialize(progress_bar=True)
 
 
+from opencage.geocoder import OpenCageGeocode
+key = "6f43823ea23f4a118b14d896b8e13ed5"
+geocoder = OpenCageGeocode(key)
+
+
 # Setting the Page Layout as wide
 st.set_page_config(
     page_title="AI GERD Dashboard",
@@ -117,20 +122,13 @@ def df_date_split(df,lat_long_list):
     date_split_df = pd.concat(df_date_list)
     return date_split_df
 
-
-#creating geolocator object for getting country code
-geolocator = Nominatim(user_agent="geoapiExercises")
-
-#function for fetching country code using geolocator
 @st.cache
-def locationFilter(lat_long):
+def reverseGeoCoder(lat,long):
     try:
-        location = geolocator.reverse(lat_long,timeout=None,language='en')
-        address = location.raw['address']
-        return address['country_code']
+        result = geocoder.reverse_geocode(lat,long)
+        return (result[0]['components']['country_code'])
     except:
-        print("Failed to get country code", lat_long)
-        return "DE"
+        print("Failed to get Country code",lat,long)
 
 @st.cache
 #function for creating 2 separate columns one for country code with 'et' values and 2nd with lat long concated values
@@ -143,14 +141,13 @@ def lat_long_process(df):
 #applying the function on the dataframe
 temperatureDataFrame = lat_long_process(temperatureDataFrame)
 
-
-#Creating a separate dataframe for lat long values and returning a list of lat_long values
 @st.cache
+#Creating a separate dataframe for lat long values and returning a list of lat_long values
 def lat_long_list_creation(df):
     lat_long_df = df[['lat','long']]
     lat_long_df['lat_long'] = lat_long_df.loc[:,'lat'].astype(str)+','+lat_long_df.loc[:,'long'].astype(str)
     lat_long_df.drop_duplicates(inplace=True)
-    lat_long_df['Country_code'] = lat_long_df['lat_long'].parallel_apply(lambda x:locationFilter(x))
+    lat_long_df['Country_code'] = lat_long_df.parallel_apply(lambda x:reverseGeoCoder(x.lat,x.long),axis = 1)
     lat_long_df['Country_code'].unique()
     lat_long_df = lat_long_df[lat_long_df['Country_code']=='et']
     lat_long_list = lat_long_df['lat_long']
