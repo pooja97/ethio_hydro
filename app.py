@@ -124,9 +124,13 @@ geolocator = Nominatim(user_agent="geoapiExercises")
 #function for fetching country code using geolocator
 @st.cache
 def locationFilter(lat_long):
-    location = geolocator.reverse(lat_long,timeout=None,language='en')
-    address = location.raw['address']
-    return address['country_code']
+    try:
+        location = geolocator.reverse(lat_long,timeout=None,language='en')
+        address = location.raw['address']
+        return address['country_code']
+    except:
+        print("Failed to get country code", lat_long)
+        return "DE"
 
 @st.cache
 #function for creating 2 separate columns one for country code with 'et' values and 2nd with lat long concated values
