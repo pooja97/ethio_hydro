@@ -13,7 +13,7 @@ Go to the project folder and install the required packages.
 
 Packages:
 
-pandas: pip3 install pandas\n
+pandas: pip3 install pandas 
 streamlit: pip3 install streamlit
 geopy: pip3 install geopy
 Pandarallel: pip3 install pandarallel
