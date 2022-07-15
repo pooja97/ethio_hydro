@@ -3,3 +3,4 @@
 historicalData/precipitation1.csv filter=lfs diff=lfs merge=lfs -text
 historicalData/precipitation2.csv filter=lfs diff=lfs merge=lfs -text
 historicalData/ filter=lfs diff=lfs merge=lfs -text
+histocialData/ filter=lfs diff=lfs merge=lfs -text
