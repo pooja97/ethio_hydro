@@ -4,11 +4,12 @@ folium==0.12.1.post1
 geopy==2.2.0
 matplotlib==3.5.1
 numpy==1.21.5
-opencage==2.0.0
 pandarallel==1.6.1
 pandas==1.4.2
 Pillow==9.2.0
 plotly==5.6.0
+protobuf==4.21.2
 seaborn==0.11.2
 streamlit==1.10.0
 streamlit_folium==0.6.13
+google-cloud-storage=393.0.0
