@@ -24,6 +24,7 @@ from typing import Dict, List, Optional
 import folium
 from streamlit_folium import st_folium
 from branca.element import Figure
+from precipitation_function import lat_long_type
 
 #disabling warnings
 import warnings
@@ -34,12 +35,12 @@ from pandarallel import pandarallel
 pandarallel.initialize(progress_bar=True)
 
 
-@st.cache
-def load_dataset_temp():
-    temperatureFiles = os.path.join("historicalData/temperature*.csv")
-    temperatureFiles = glob.glob(temperatureFiles)
-    temperatureDF = pd.concat(map(pd.read_csv,temperatureFiles),ignore_index = True)
-    return temperatureDF
+# @st.cache
+# def load_dataset_temp():
+#     temperatureFiles = os.path.join("historicalData/temperature*.csv")
+#     temperatureFiles = glob.glob(temperatureFiles)
+#     temperatureDF = pd.concat(map(pd.read_csv,temperatureFiles),ignore_index = True)
+#     return temperatureDF
 
 fig = Figure(width = 550,height = 350)
 
@@ -68,7 +69,6 @@ def df_date_split(df,lat_long_list):
 @st.cache
 #function for creating 2 separate columns one for country code with 'et' values and 2nd with lat long concated values
 def lat_long_process(df):
-    df['Country_code'] = 'et'
     df['lat_long'] = df.loc[:,'lat'].astype(str)+','+df.loc[:,'long'].astype(str)
     df.drop_duplicates(inplace = True)
     return df
@@ -272,17 +272,18 @@ def map_creation(lat,long):
 
 #df is the initial df that contains only et data
 def search_func(latitude,longitude,lt_lng_lst,df):
-    if latitude and longitude in lt_lng_lst:
-        nearest_neighbor = latitude +','+longitude
-        st.write('Nearest Latitude and Longitude point is:',nearest_neighbor)
-    else:
+    # if latitude and longitude in lt_lng_lst:
+    #     nearest_neighbor = latitude +','+longitude
+    #     st.write('Nearest Latitude and Longitude point is:',nearest_neighbor)
+    # else:
         #implement haversine distance to calculate nearest Latitude, Longitude
         #_get_value is depricated in python
-        df['lat_radian'],df['long_radian'] = np.radians(df['lat']),np.radians(df['long'])
-        df['dLON'] = df['long_radian'] - math.radians(longitude)
-        df['dLAT'] = df['lat_radian'] - math.radians(latitude)
-        df['distance'] = 6371 * 2 * np.arcsin(np.sqrt(np.sin(df['dLAT']/2)**2 + math.cos(math.radians(longitude)) * np.cos(df['lat_radian']) * np.sin(df['dLON']/2)**2))
-        a = df['distance'].idxmin()
-        nearest_neighbor = df._get_value(a,'lat_long')
+    df['lat_radian'],df['long_radian'] = np.radians(df['lat']),np.radians(df['long'])
+    df['dLON'] = df['long_radian'] - math.radians(longitude)
+    df['dLAT'] = df['lat_radian'] - math.radians(latitude)
+    df['distance'] = 6371 * 2 * np.arcsin(np.sqrt(np.sin(df['dLAT']/2)**2 + math.cos(math.radians(longitude)) * np.cos(df['lat_radian']) * np.sin(df['dLON']/2)**2))
+    a = df['distance'].idxmin()
+    nearest_neighbor = df._get_value(a,'lat_long')
+    nearest_neighbor = lat_long_type(nearest_neighbor)
         # st.write("**Nearest Latitude and Longitude is :**",nearest_neighbor)
     return nearest_neighbor

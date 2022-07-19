@@ -3,11 +3,12 @@ def run():
     import pandas as pd
     import numpy as np
     import streamlit as st
+    
 
-    from precipitation_function import load_dataset_precp_1,load_dataset_precp_2,date_split,lat_long_process_precp_1,lat_long_process_precp_2
+    from precipitation_function import date_split,lat_long_process_precp_1,lat_long_process_precp_2
     from precipitation_function import concat_func, drop_dup_funct,lat_long_type
     from precipitation_function import daily_precp_plot,start_end_date_ui,lat_long_ui,year_selection_ui
-    from precipitation_function import monthly_mean_plot, annual_max_precip_plot,daily_precp_data
+    from precipitation_function import monthly_mean_plot, annual_max_precip_plot,daily_precp_data,read_file
     from precipitation_function import annual_max_precip_plot,annual_min_precip_plot,annual_avg_plot,max_precip,min_precip,avg_precip
 
     from temperature_functions import convert_df, map_creation, search_func
@@ -19,14 +20,18 @@ def run():
     end = pd.to_datetime('2019/12/31')
 
     #precipitation data
-    precipitation_1_og = load_dataset_precp_1("historicalData/precipitation1.csv")
-    precipitation_2_og = load_dataset_precp_2("historicalData/precipitation2.csv")
+    # precipitation_1_og = load_dataset_precp_1("historicalData/precipitation1.csv")
+    # precipitation_2_og = load_dataset_precp_2("historicalData/precipitation2.csv")
+    bucket_name = "timeseries_data_storage"
+    file_path_1 = "precipitation1.csv"
+    file_path_2 = "precipitation2.csv"
 
-    precipitation_1 = precipitation_1_og.copy()
-    precipitation_2 = precipitation_2_og.copy()
+    precipitation_1_og = read_file(bucket_name,file_path_1)
+    precipitation_2_og = read_file(bucket_name,file_path_2)
 
-    precipitation_1_lst = lat_long_process_precp_1(precipitation_1)
-    precipitation_2_lst = lat_long_process_precp_2(precipitation_2)
+
+    precipitation_1_lst = lat_long_process_precp_1(precipitation_1_og)
+    precipitation_2_lst = lat_long_process_precp_2(precipitation_2_og)
 
 
     precipitation_1_lst = drop_dup_funct(precipitation_1_lst)

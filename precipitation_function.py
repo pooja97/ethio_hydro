@@ -9,6 +9,7 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import altair as alt
+import io
 
 #for Logo plotting
 from PIL import Image
@@ -21,16 +22,37 @@ warnings.filterwarnings("ignore")
 from pandarallel import pandarallel
 pandarallel.initialize(progress_bar=True)
 
+from google.oauth2 import service_account
+from google.cloud import storage
 
-@st.experimental_memo(ttl=600)
-def load_dataset_precp_1(precipitation):
-    precipitation = pd.read_csv(precipitation)
-    return precipitation
+# Create API client.
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+client = storage.Client(credentials=credentials)
 
-@st.experimental_memo(ttl=600)
-def load_dataset_precp_2(precipitation):
-    precipitation = pd.read_csv(precipitation)
-    return precipitation
+@st.cache(allow_output_mutation = True)
+def read_file(bucket_name, file_path):
+    bucket = client.bucket(bucket_name)
+    data = bucket.blob(file_path).download_as_string()
+    df = pd.read_csv(io.BytesIO(data))
+    return df
+
+# bucket_name = "streamlit-bucket"
+# file_path = "myfile.csv"
+#
+# content = read_file(bucket_name, file_path)
+
+
+# @st.experimental_memo(ttl=600)
+# def load_dataset_precp_1(precipitation):
+#     precipitation = pd.read_csv(precipitation)
+#     return precipitation
+#
+# @st.experimental_memo(ttl=600)
+# def load_dataset_precp_2(precipitation):
+#     precipitation = pd.read_csv(precipitation)
+#     return precipitation
 
 
 @st.cache
@@ -39,17 +61,17 @@ def date_split(df):
     return df
 
 
-@st.experimental_memo(ttl=600)
+@st.cache(allow_output_mutation = True)
 def lat_long_process_precp_1(df):
     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
     return df
 
-@st.experimental_memo(ttl=600)
+@st.cache(allow_output_mutation = True)
 def lat_long_process_precp_2(df):
     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
     return df
 
-@st.experimental_memo(ttl=600)
+@st.cache
 def drop_dup_funct(x):
     x.drop_duplicates(inplace = True)
     return x

@@ -7,10 +7,12 @@ def run():
     import numpy as np
     import streamlit as st
 
-    from temperature_functions import load_dataset_temp, annual_avg, df_date_split, lat_long_process,lat_long_list_creation
+    from temperature_functions import annual_avg, df_date_split, lat_long_process,lat_long_list_creation
     from temperature_functions import group_df, daily_avg, annual_avg_plot, avg_temp_plot, annual_min_plot, annual_max_plot
     from temperature_functions import daily_avg_calc, daily_avg_plot, monthly_mean_calc, selecting_mean, plot_mean_data, max_temp_plot
     from temperature_functions import min_temp_plot, convert_df, map_creation, search_func
+    from precipitation_function import read_file
+
 
 
     import warnings
@@ -22,11 +24,12 @@ def run():
 
     #nearest neighbor
     nn = 0
-
-    temperatureDF = load_dataset_temp()
-
-    #data inspection
-    temperatureDF.info()
+    bucket_name = 'timeseries_data_storage'
+    file_path1 = 'temperature1.csv'
+    file_path2 = 'temperature2.csv'
+    tempe1 = read_file(bucket_name,file_path1)
+    tempe2 = read_file(bucket_name,file_path2)
+    temperatureDF = pd.concat([tempe1,tempe2],axis =0 )
 
     #creating copy of our dataframe
     temperatureDataFrame = temperatureDF.copy()
