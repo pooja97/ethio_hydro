@@ -101,7 +101,7 @@ def daily_precp_plot(df):
     fig  = px.line(df, x = 'date',y='precip',title = 'Daily Precipitation')
     fig.update_traces(line_color = 'blue')
     fig.update_xaxes(title_text = 'Year',gridcolor = 'whitesmoke')
-    fig.update_yaxes(ticklabelposition="inside top", title= 'Daily Precipitation',gridcolor = 'whitesmoke')
+    fig.update_yaxes(ticklabelposition="inside top", title= 'Daily Precipitation in mm',gridcolor = 'whitesmoke')
     fig.update_layout(margin = dict(l=25,r=25,t=25,b=25))
     fig.update_layout(plot_bgcolor = 'rgba(0,0,0,0)')
     fig.update_layout(title = "Daily Precipitation")
@@ -143,13 +143,13 @@ def year_selection_ui(key1,key2):
 
     return start_year,end_year
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def monthly_mean_plot(df):
     title_text = "Monthly Mean Precipitation"
     highlight = alt.selection(
     type='single', on='mouseover', fields=['Year'], nearest=True)
     base = alt.Chart(df,title = title_text).encode(
-    x = alt.X('Month:Q',scale = alt.Scale(domain=[1,12])),
+    x = alt.X('Month:Q',scale = alt.Scale(domain=[1,12]),axis=alt.Axis(tickMinStep=1)),
     y = alt.Y('precip:Q',scale = alt.Scale(domain=[df['precip'].min(),df['precip'].max()])),
     color = alt.Color('Year:O',scale = alt.Scale(scheme = 'magma'))
     )
@@ -172,7 +172,7 @@ def annual_max_precip_plot(df):
     fig_max  = px.line(df, x = 'Year',y='precip',title = 'Annual Maximum Precipitation')
     fig_max.update_traces(line_color = 'maroon')
     fig_max.update_xaxes(title_text = 'Year',gridcolor = 'whitesmoke')
-    fig_max.update_yaxes(ticklabelposition="inside top", title= 'Annual Maximum Precipitation',gridcolor = 'whitesmoke')
+    fig_max.update_yaxes(ticklabelposition="inside top", title= 'Annual Maximum Precipitation in mm',gridcolor = 'whitesmoke')
     fig_max.update_layout(margin = dict(l=25,r=25,t=25,b=25))
     fig_max.update_layout(plot_bgcolor = 'rgba(0,0,0,0)')
     fig_max.update_layout(title = "Annual Maximum Precipitation")
@@ -183,7 +183,7 @@ def annual_min_precip_plot(df):
     fig_min  = px.line(df, x = 'Year',y='precip',title = 'Annual Minimum Precipitation')
     fig_min.update_traces(line_color = 'blue')
     fig_min.update_xaxes(title_text = 'Year',gridcolor = 'whitesmoke')
-    fig_min.update_yaxes(ticklabelposition="inside top", title= 'Annual Minimum Precipitation',gridcolor = 'whitesmoke')
+    fig_min.update_yaxes(ticklabelposition="inside top", title= 'Annual Minimum Precipitation in mm',gridcolor = 'whitesmoke')
     fig_min.update_layout(margin = dict(l=25,r=25,t=25,b=25))
     fig_min.update_layout(plot_bgcolor = 'rgba(0,0,0,0)')
     fig_min.update_layout(title = "Annual Minimum Precipitation")
@@ -193,7 +193,7 @@ def annual_avg_plot(df):
     fig_avg  = px.line(df, x = 'Year',y='precip',title = 'Annual Average Precipitation')
     fig_avg.update_traces(line_color = 'dimgray')
     fig_avg.update_xaxes(title_text = 'Year',gridcolor = 'whitesmoke')
-    fig_avg.update_yaxes(ticklabelposition="inside top", title= 'Annual Average Precipitation',gridcolor = 'whitesmoke')
+    fig_avg.update_yaxes(ticklabelposition="inside top", title= 'Annual Average Precipitation in mm',gridcolor = 'whitesmoke')
     fig_avg.update_layout(margin = dict(l=25,r=25,t=25,b=25))
     fig_avg.update_layout(plot_bgcolor = 'rgba(0,0,0,0)')
     fig_avg.update_layout(title = "Annual Average Precipitation")

@@ -51,7 +51,7 @@ def run():
     #creating the Sidebar Menu
     with st.sidebar:
             #creating radio button
-        data_type = st.radio("Select the data type to view the plot",
+        data_type = st.radio("Select Data Type to View",
                             ('Daily Average','Monthly Mean Temperature','Annual Maximum Temperature','Annual Minimum Temperature','Annual Average Temperature','Annual Max, Min, & Average Temperature'))
 
     #dividing the screen column into 2 sections for daily_average

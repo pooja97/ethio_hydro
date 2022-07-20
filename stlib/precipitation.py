@@ -3,7 +3,7 @@ def run():
     import pandas as pd
     import numpy as np
     import streamlit as st
-    
+
 
     from precipitation_function import date_split,lat_long_process_precp_1,lat_long_process_precp_2
     from precipitation_function import concat_func, drop_dup_funct,lat_long_type
@@ -49,7 +49,7 @@ def run():
 
 
     with st.sidebar:
-        data_type = st.radio("Select the data type to view the plot",
+        data_type = st.radio("Select Data Type to View",
                         ('Daily Precipitation','Monthly Average Precipitation',
                         'Annual Maximum Precipitation','Annual Minimum Precipitation',
                         'Annual Average Precipitation','Annual Max, Min, & Average Precipitation'))

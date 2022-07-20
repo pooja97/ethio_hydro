@@ -20,7 +20,7 @@ with st.container():
         st.image(image)
     #Code for Title
     with col2:
-        col2.markdown("<h1 style='text-align:centre; color: black;'>ETHIO HYDRO</h1>", unsafe_allow_html=True)
+        col2.markdown("<h1 style='text-align:centre; color: black;'>ETHIO HYDRO & CLIMATE HUB</h1>", unsafe_allow_html=True)
 
 message = """
             __Select an application from the list below__

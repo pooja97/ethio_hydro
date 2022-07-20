@@ -35,12 +35,6 @@ from pandarallel import pandarallel
 pandarallel.initialize(progress_bar=True)
 
 
-# @st.cache
-# def load_dataset_temp():
-#     temperatureFiles = os.path.join("historicalData/temperature*.csv")
-#     temperatureFiles = glob.glob(temperatureFiles)
-#     temperatureDF = pd.concat(map(pd.read_csv,temperatureFiles),ignore_index = True)
-#     return temperatureDF
 
 fig = Figure(width = 550,height = 350)
 
@@ -118,7 +112,7 @@ def annual_avg_plot(annual_avg_df,lat_long_option,lat_long_list):
 #creating average temp plotly chart
 def avg_temp_plot(annual_temp,lat_long_val):
     #CODE FOR PLOTTING ANNUAL AVERAGE TEMPERATURE
-    fig_avg = px.line(annual_temp, x= 'Year',y='Annual avg',title = 'Yearly Average Temperature')
+    fig_avg = px.line(annual_temp, x= 'Year',y='Annual avg')
     fig_avg.update_layout(
     yaxis = dict(tickfont = dict(size=15)),
     xaxis = dict(tickfont = dict(size=15)),
@@ -126,7 +120,8 @@ def avg_temp_plot(annual_temp,lat_long_val):
     fig_avg.update_traces(line_color ='dimgray')
     fig_avg.update_xaxes(gridcolor='whitesmoke')
     fig_avg.update_yaxes(gridcolor = 'whitesmoke')
-    fig_avg.update_layout(title = "Yearly Average Temperature: "+str(lat_long_val))
+    fig_avg.update_yaxes(title = 'Annual Average Temperature (C)')
+    # fig_avg.update_layout(title = "Annual Average Temperature: "+str(lat_long_val))
 
     return fig_avg
 
@@ -168,10 +163,10 @@ def daily_avg_plot(data_frame_start_end,lat_long_val):
     fig  = px.line(data_frame_start_end, x = 'date',y='daily_avg',title = 'Daily Average Temperature')
     fig.update_traces(line_color = 'blue')
     fig.update_xaxes(title_text = 'Year',gridcolor = 'whitesmoke')
-    fig.update_yaxes(ticklabelposition="inside top", title= 'Daily average temperature',gridcolor = 'whitesmoke')
+    fig.update_yaxes(ticklabelposition="inside top", title= 'Daily Average Temperature (C)',gridcolor = 'whitesmoke')
     fig.update_layout(margin = dict(l=25,r=25,t=25,b=25))
     fig.update_layout(plot_bgcolor = 'rgba(0,0,0,0)')
-    fig.update_layout(title = "Daily Average Temperature: "+str(lat_long_val))
+    # fig.update_layout(title = "Daily Average Temperature: "+str(lat_long_val))
     return fig
 
 @st.cache
@@ -198,8 +193,8 @@ def plot_mean_data(df,lat_long_val):
     highlight = alt.selection(
     type='single', on='mouseover', fields=['Year'], nearest=True)
     base = alt.Chart(df,title = title_text).encode(
-    x = alt.X('Month:Q',scale = alt.Scale(domain=[1,12])),
-    y = alt.Y('Monthly mean temperature:Q',scale = alt.Scale(domain=[12,35])),
+    x = alt.X('Month:Q',scale = alt.Scale(domain=[1,12]),axis=alt.Axis(tickMinStep=1)),
+    y = alt.Y('Monthly mean temperature:Q',scale = alt.Scale(domain =[int(df['Monthly mean temperature'].min()),int(df['Monthly mean temperature'].max())])),
     color = alt.Color('Year:O',scale = alt.Scale(scheme = 'magma'))
     )
     points = base.mark_circle().encode(
@@ -213,11 +208,11 @@ def plot_mean_data(df,lat_long_val):
     lines = base.mark_line().encode(
     size=alt.condition(~highlight, alt.value(1), alt.value(3)))
 
-    mean_chart = (points + lines).properties(width=1000, height=400).interactive()
+    mean_chart = (points + lines).properties(width=1000, height=450).interactive()
     return mean_chart
 
 def max_temp_plot(df_max,lat_long_val):
-    fig_max = px.line(df_max,x = 'Year',y='Yearly_maximum_temp',title = 'Yearly Maximum Temperature')
+    fig_max = px.line(df_max,x = 'Year',y='Yearly_maximum_temp')
     fig_max.update_traces(line_color = 'maroon')
     fig_max.update_layout(
     yaxis = dict(tickfont = dict(size=15)),
@@ -225,13 +220,14 @@ def max_temp_plot(df_max,lat_long_val):
     plot_bgcolor = 'rgba(0,0,0,0)')
     fig_max.update_xaxes(gridcolor='whitesmoke')
     fig_max.update_yaxes(gridcolor = 'whitesmoke')
-    fig_max.update_layout(title = "Yearly Maximum Temperature: "+str(lat_long_val))
+    fig_max.update_yaxes(title = "Annual Maximum Temperature (C)")
+    # fig_max.update_layout(title = "Yearly Maximum Temperature: "+str(lat_long_val))
 
     return fig_max
 
 
 def min_temp_plot(df_min,lat_long_val):
-    fig_min = px.line(df_min, x= 'Year',y = 'Yearly_minimum_temp',title = 'Yearly Minimum Temperature')
+    fig_min = px.line(df_min, x= 'Year',y = 'Yearly_minimum_temp')
     fig_min.update_traces(line_color ='blue')
     fig_min.update_layout(
     yaxis = dict(tickfont = dict(size=15)),
@@ -239,7 +235,8 @@ def min_temp_plot(df_min,lat_long_val):
     plot_bgcolor = 'rgba(0,0,0,0)')
     fig_min.update_xaxes(gridcolor='whitesmoke')
     fig_min.update_yaxes(gridcolor = 'whitesmoke')
-    fig_min.update_layout(title = "Yearly Minimum Temperature: "+str(lat_long_val))
+    fig_min.update_yaxes(title = "Annual Minimum Temperature (C)")
+    # fig_min.update_layout(title = "Yearly Minimum Temperature: "+str(lat_long_val))
 
     return fig_min
 
@@ -255,7 +252,7 @@ def convert_df(df):
 def map_creation(lat,long):
     with st.sidebar:
         with st.container():
-            m = folium.Map(location = [8,38],zoom_start = 7)
+            m = folium.Map(location = [9.14,40],zoom_start =7)
             fig.add_child(m)
             tile = folium.TileLayer(
             tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -272,12 +269,6 @@ def map_creation(lat,long):
 
 #df is the initial df that contains only et data
 def search_func(latitude,longitude,lt_lng_lst,df):
-    # if latitude and longitude in lt_lng_lst:
-    #     nearest_neighbor = latitude +','+longitude
-    #     st.write('Nearest Latitude and Longitude point is:',nearest_neighbor)
-    # else:
-        #implement haversine distance to calculate nearest Latitude, Longitude
-        #_get_value is depricated in python
     df['lat_radian'],df['long_radian'] = np.radians(df['lat']),np.radians(df['long'])
     df['dLON'] = df['long_radian'] - math.radians(longitude)
     df['dLAT'] = df['lat_radian'] - math.radians(latitude)

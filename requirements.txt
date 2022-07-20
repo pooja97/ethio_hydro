@@ -8,8 +8,8 @@ pandarallel==1.6.1
 pandas==1.4.2
 Pillow==9.2.0
 plotly==5.6.0
-protobuf==4.21.2
+protobuf
 seaborn==0.11.2
-streamlit==1.10.0
+streamlit==1.11.0
 streamlit_folium==0.6.13
-google-cloud-storage=393.0.0
+google-cloud-storage==2.4.0
