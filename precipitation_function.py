@@ -49,46 +49,44 @@ def date_split(df):
 
 
 @st.cache(allow_output_mutation = True)
-def lat_long_process_precp(df):
+def lat_long_process_precp_1(df):
     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
     return df
 
-# @st.cache(allow_output_mutation = True)
-# def lat_long_process_precp_2(df):
-#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-#     return df
-#
-# @st.cache(allow_output_mutation = True)
-# def lat_long_process_precp_3(df):
-#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-#     return df
-#
-# @st.cache(allow_output_mutation = True)
-# def lat_long_process_precp_4(df):
-#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-#     return df
-#
-# @st.cache(allow_output_mutation = True)
-# def lat_long_process_precp_5(df):
-#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-#     return df
-#
-# @st.cache(allow_output_mutation = True)
-# def lat_long_process_precp_6(df):
-#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-#     return df
+@st.cache(allow_output_mutation = True)
+def lat_long_process_precp_2(df):
+    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+    return df
 
+@st.cache(allow_output_mutation = True)
+def lat_long_process_precp_3(df):
+    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+    return df
 
+@st.cache(allow_output_mutation = True)
+def lat_long_process_precp_4(df):
+    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+    return df
 
-# @st.cache(allow_output_mutation = True)
-# def lat_long_process_precp_7(df):
-#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-#     return df
-#
-# @st.cache(allow_output_mutation = True)
-# def lat_long_process_precp_8(df):
-#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-#     return df
+@st.cache(allow_output_mutation = True)
+def lat_long_process_precp_5(df):
+    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+    return df
+
+@st.cache(allow_output_mutation = True)
+def lat_long_process_precp_6(df):
+    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+    return df
+
+@st.cache(allow_output_mutation = True)
+def lat_long_process_precp_7(df):
+    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+    return df
+
+@st.cache(allow_output_mutation = True)
+def lat_long_process_precp_8(df):
+    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+    return df
 
 
 @st.cache

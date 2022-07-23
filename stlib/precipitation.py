@@ -3,7 +3,7 @@ import numpy as np
 import streamlit as st
 
 
-from precipitation_function import date_split,lat_long_process_precp
+from precipitation_function import date_split,lat_long_process_precp_1,lat_long_process_precp_2,lat_long_process_precp_3,lat_long_process_precp_4,lat_long_process_precp_5,lat_long_process_precp_6,lat_long_process_precp_7,lat_long_process_precp_8
 from precipitation_function import concat_func, drop_dup_funct,lat_long_type
 from precipitation_function import daily_precp_plot,start_end_date_ui,lat_long_ui,year_selection_ui
 from precipitation_function import monthly_mean_plot, annual_max_precip_plot,daily_precp_data,read_file
