@@ -1,32 +1,36 @@
 
 
+#standard imports
+import pandas as pd
+import numpy as np
+import streamlit as st
+import swifter
+swifter.register_modin()
+
+from temperature_functions import annual_avg, df_date_split, lat_long_process,lat_long_list_creation
+from temperature_functions import group_df, daily_avg, annual_avg_plot, avg_temp_plot, annual_min_plot, annual_max_plot
+from temperature_functions import daily_avg_calc, daily_avg_plot, monthly_mean_calc, selecting_mean, plot_mean_data, max_temp_plot
+from temperature_functions import min_temp_plot, convert_df, map_creation, search_func
+from precipitation_function import read_file
+
+
+
+import warnings
+warnings.filterwarnings("ignore")
+
+#For parallel processing
+from pandarallel import pandarallel
+pandarallel.initialize(progress_bar=True)
+
+
 def run():
 
-    #standard imports
-    import pandas as pd
-    import numpy as np
-    import streamlit as st
-
-    from temperature_functions import annual_avg, df_date_split, lat_long_process,lat_long_list_creation
-    from temperature_functions import group_df, daily_avg, annual_avg_plot, avg_temp_plot, annual_min_plot, annual_max_plot
-    from temperature_functions import daily_avg_calc, daily_avg_plot, monthly_mean_calc, selecting_mean, plot_mean_data, max_temp_plot
-    from temperature_functions import min_temp_plot, convert_df, map_creation, search_func
-    from precipitation_function import read_file
-
-
-
-    import warnings
-    warnings.filterwarnings("ignore")
-
-    #For parallel processing
-    from pandarallel import pandarallel
-    pandarallel.initialize(progress_bar=True)
 
     #nearest neighbor
     nn = 0
     bucket_name = 'timeseries_data_storage'
-    file_path1 = 'temperature1.csv'
-    file_path2 = 'temperature2.csv'
+    file_path1 = 'temperature1.zip'
+    file_path2 = 'temperature2.zip'
     tempe1 = read_file(bucket_name,file_path1)
     tempe2 = read_file(bucket_name,file_path2)
     temperatureDF = pd.concat([tempe1,tempe2],axis =0 )
@@ -44,7 +48,7 @@ def run():
     result = group_df(temperatureDataFrame,lat_long_list)
 
     #Dataframe containing daily average
-    result['daily_avg'] = result.parallel_apply(lambda x: daily_avg(x.tmin,x.tmax),axis=1)
+    result['daily_avg'] = result.swifter.apply(lambda x: daily_avg(x.tmin,x.tmax),axis=1)
 
 
     ### Dashboard Creation

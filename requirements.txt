@@ -2,7 +2,6 @@ altair==4.2.0
 branca==0.5.0
 folium==0.12.1.post1
 geopy==2.2.0
-matplotlib==3.5.1
 numpy==1.21.5
 pandarallel==1.6.1
 pandas==1.4.2
@@ -13,3 +12,5 @@ seaborn==0.11.2
 streamlit==1.11.0
 streamlit_folium==0.6.13
 google-cloud-storage==2.4.0
+swifter
+modin 

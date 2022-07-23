@@ -16,7 +16,7 @@ with st.container():
     col1,col2 = st.columns(2)
     #Code for adding Logo
     with col1:
-        image = Image.open('image.png')
+        image = Image.open('references/image.png')
         st.image(image)
     #Code for Title
     with col2:

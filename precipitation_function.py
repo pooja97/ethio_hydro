@@ -3,6 +3,7 @@ import numpy as np
 import streamlit as st
 
 
+
 #imports for finding the nearest lat long using haversine distance
 
 #visualization libraries to visualize different plots
@@ -34,25 +35,11 @@ client = storage.Client(credentials=credentials)
 @st.cache(allow_output_mutation = True)
 def read_file(bucket_name, file_path):
     bucket = client.bucket(bucket_name)
-    data = bucket.blob(file_path).download_as_string()
-    df = pd.read_csv(io.BytesIO(data))
+    data = bucket.blob(file_path).download_as_bytes()
+    df = pd.read_csv(io.BytesIO(data),compression='zip')
     return df
 
-# bucket_name = "streamlit-bucket"
-# file_path = "myfile.csv"
-#
-# content = read_file(bucket_name, file_path)
 
-
-# @st.experimental_memo(ttl=600)
-# def load_dataset_precp_1(precipitation):
-#     precipitation = pd.read_csv(precipitation)
-#     return precipitation
-#
-# @st.experimental_memo(ttl=600)
-# def load_dataset_precp_2(precipitation):
-#     precipitation = pd.read_csv(precipitation)
-#     return precipitation
 
 
 @st.cache
@@ -62,14 +49,47 @@ def date_split(df):
 
 
 @st.cache(allow_output_mutation = True)
-def lat_long_process_precp_1(df):
+def lat_long_process_precp(df):
     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
     return df
 
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_2(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
+# @st.cache(allow_output_mutation = True)
+# def lat_long_process_precp_2(df):
+#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+#     return df
+#
+# @st.cache(allow_output_mutation = True)
+# def lat_long_process_precp_3(df):
+#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+#     return df
+#
+# @st.cache(allow_output_mutation = True)
+# def lat_long_process_precp_4(df):
+#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+#     return df
+#
+# @st.cache(allow_output_mutation = True)
+# def lat_long_process_precp_5(df):
+#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+#     return df
+#
+# @st.cache(allow_output_mutation = True)
+# def lat_long_process_precp_6(df):
+#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+#     return df
+
+
+
+# @st.cache(allow_output_mutation = True)
+# def lat_long_process_precp_7(df):
+#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+#     return df
+#
+# @st.cache(allow_output_mutation = True)
+# def lat_long_process_precp_8(df):
+#     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
+#     return df
+
 
 @st.cache
 def drop_dup_funct(x):
@@ -77,8 +97,8 @@ def drop_dup_funct(x):
     return x
 
 @st.cache(allow_output_mutation = True)
-def concat_func(x,y):
-    z = pd.concat([x,y])
+def concat_func(x,y,a,b,c,d,e,f):
+    z = pd.concat([x,y,a,b,c,d,e,f])
     return z
 
 @st.cache

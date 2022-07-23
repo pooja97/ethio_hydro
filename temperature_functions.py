@@ -263,7 +263,7 @@ def map_creation(lat,long):
             folium.TileLayer('Stamen Terrain').add_to(m)
             folium.TileLayer('Stamen Water Color').add_to(m)
             folium.LayerControl().add_to(m)
-            folium.Marker([lat,long],popup = "ET",tooltip='Ethopia').add_to(m)
+            folium.Marker([lat,long]).add_to(m)
             st_data = st_folium(m,key = 'map_fig_1')
             return st_data
 
