@@ -49,44 +49,10 @@ def date_split(df):
 
 
 @st.cache(allow_output_mutation = True)
-def lat_long_process_precp_1(df):
+def lat_long_process_precp(df):
     df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
     return df
 
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_2(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
-
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_3(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
-
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_4(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
-
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_5(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
-
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_6(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
-
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_7(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
-
-@st.cache(allow_output_mutation = True)
-def lat_long_process_precp_8(df):
-    df['lat_long'] = df['lat'].astype(str)+','+df['long'].astype(str)
-    return df
 
 
 @st.cache
@@ -95,8 +61,8 @@ def drop_dup_funct(x):
     return x
 
 @st.cache(allow_output_mutation = True)
-def concat_func(x,y,a,b,c,d,e,f):
-    z = pd.concat([x,y,a,b,c,d,e,f])
+def concat_func(x,y,a,b):
+    z = pd.concat([x,y,a,b])
     return z
 
 @st.cache
