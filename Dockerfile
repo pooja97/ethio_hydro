@@ -18,6 +18,7 @@ COPY stlib stlib
 COPY precipitation_function.py  precipitation_function.py
 COPY temperature_functions.py   temperature_functions.py
 COPY .streamlit .streamlit
+COPY historicalData historicalData
 
 
 
