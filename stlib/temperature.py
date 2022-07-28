@@ -34,8 +34,8 @@ def run():
     # bucket_name = 'timeseries_data_storage'
     # file_path1 = 'temperature1.zip'
     # file_path2 = 'temperature2.zip'
-    tempe1 = pd.read_csv('historicalData/temperature1.csv')
-    tempe2 = pd.read_csv('historicalData/temperature2.csv')
+    tempe1 = pd.read_csv('historicalData/temperature1.zip',compression = 'zip')
+    tempe2 = pd.read_csv('historicalData/temperature2.zip',compression = 'zip')
     temperatureDF = pd.concat([tempe1,tempe2],axis =0 )
 
     #creating copy of our dataframe

@@ -45,22 +45,22 @@ def run():
 
 
 
-    precipitation_1_og = pd.read_csv('historicalData/precip1.csv')
-    precipitation_2_og = pd.read_csv('historicalData/precip2.csv')
-    precipitation_3_og = pd.read_csv('historicalData/precip3.csv')
-    precipitation_4_og = pd.read_csv('historicalData/precip4.csv')
-    precipitation_5_og = pd.read_csv('historicalData/precip5.csv')
-    precipitation_6_og = pd.read_csv('historicalData/precip6.csv')
-    precipitation_7_og = pd.read_csv('historicalData/precip7.csv')
-    precipitation_8_og = pd.read_csv('historicalData/precip8.csv')
-    precipitation_9_og = pd.read_csv('historicalData/precip9.csv')
-    precipitation_10_og = pd.read_csv('historicalData/precip10.csv')
-    precipitation_11_og = pd.read_csv('historicalData/precip11.csv')
-    precipitation_12_og = pd.read_csv('historicalData/precip12.csv')
-    precipitation_13_og = pd.read_csv('historicalData/precip13.csv')
-    precipitation_14_og = pd.read_csv('historicalData/precip14.csv')
-    precipitation_15_og = pd.read_csv('historicalData/precip15.csv')
-    precipitation_16_og = pd.read_csv('historicalData/precip16.csv')
+    precipitation_1_og = pd.read_csv('historicalData/precip1.zip',compression = 'zip')
+    precipitation_2_og = pd.read_csv('historicalData/precip2.zip',compression = 'zip')
+    precipitation_3_og = pd.read_csv('historicalData/precip3.zip',compression = 'zip')
+    precipitation_4_og = pd.read_csv('historicalData/precip4.zip',compression = 'zip')
+    precipitation_5_og = pd.read_csv('historicalData/precip5.zip',compression = 'zip')
+    precipitation_6_og = pd.read_csv('historicalData/precip6.zip',compression = 'zip')
+    precipitation_7_og = pd.read_csv('historicalData/precip7.zip',compression = 'zip')
+    precipitation_8_og = pd.read_csv('historicalData/precip8.zip',compression = 'zip')
+    precipitation_9_og = pd.read_csv('historicalData/precip9.zip',compression = 'zip')
+    precipitation_10_og = pd.read_csv('historicalData/precip10.zip',compression = 'zip')
+    precipitation_11_og = pd.read_csv('historicalData/precip11.zip',compression = 'zip')
+    precipitation_12_og = pd.read_csv('historicalData/precip12.zip',compression = 'zip')
+    precipitation_13_og = pd.read_csv('historicalData/precip13.zip',compression = 'zip')
+    precipitation_14_og = pd.read_csv('historicalData/precip14.zip',compression = 'zip')
+    precipitation_15_og = pd.read_csv('historicalData/precip15.zip',compression = 'zip')
+    precipitation_16_og = pd.read_csv('historicalData/precip16.zip',compression = 'zip')
 
 
     lat_long_precipitation_1 = precipitation_1_og['lat_long']

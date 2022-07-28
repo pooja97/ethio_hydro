@@ -1,0 +1,6 @@
+__pycache__
+.DS_Store
+.git
+env
+README.md
+docker-compose.yml
