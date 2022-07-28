@@ -4,9 +4,11 @@ env: flex
 
 # runtime_config:
 #   python_version: 3
+
+entrypoint: streamlit run app.py --server.port $PORT
 #
-# manual_scaling:
-#   instances: 1
+automatic_scaling:
+   max_num_instances: 1
 #
 # network:
 #   session_affinity: true
