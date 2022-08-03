@@ -23,8 +23,8 @@ warnings.filterwarnings("ignore")
 from pandarallel import pandarallel
 pandarallel.initialize(progress_bar=True)
 
-from google.oauth2 import service_account
-from google.cloud import storage
+# from google.oauth2 import service_account
+# from google.cloud import storage
 
 # Create API client.
 # credentials = service_account.Credentials.from_service_account_info(
