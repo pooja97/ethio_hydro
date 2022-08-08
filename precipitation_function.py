@@ -100,7 +100,6 @@ def daily_precp_plot(df):
     fig.update_layout(title = "Daily Precipitation")
     return fig
 
-
 def start_end_date_ui(start,end,key1,key2):
     st.markdown('**Enter Start Date**')
     start = st.date_input("",value = start,key = key1)
@@ -111,7 +110,6 @@ def start_end_date_ui(start,end,key1,key2):
     end = st.date_input("",value = end, key = key2)
     if end > pd.to_datetime('2019/12/31'):
         st.write('End date should not be greater than 2019/12/31')
-
     return start,end
 
 

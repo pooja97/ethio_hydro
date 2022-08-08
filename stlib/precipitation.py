@@ -91,10 +91,23 @@ def run():
     if data_type == "Cumulative Monthly Precipitation":
         col1,col2 = st.columns(2)
         with col1:
-            start_year,end_year = year_selection_ui(99,100)
+            # start_year,end_year = year_selection_ui(99,100)
+            st.markdown('**Select the Start Year**')
+            start_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = key99)
+
+            st.markdown('**Select the End Year**')
+            end_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = key100)
         with col2:
             #calling the ui method to create a lat long input UI
-            latitude_input,longitude_input = lat_long_ui(300,400)
+            # latitude_input,longitude_input = lat_long_ui(300,400)
+            st.markdown('**Enter the latitude**')
+            latitude_input = st.text_input('','12.55',key = 1)
+            st.markdown('**Enter the longitude**')
+            longitude_input = st.text_input('','42.45',key = 2)
 
 
         latitude_input,longitude_input= float(latitude_input),float(longitude_input)
@@ -145,9 +158,22 @@ def run():
         col1,col2 = st.columns(2)
         with col1:
             #calling the ui method to create a start end date input UI
-            start,end = start_end_date_ui(start,end,11,22)
+            # start,end = start_end_date_ui(start,end,11,22)
+            st.markdown('**Select the Start Year**')
+            start_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key=11)
+
+            st.markdown('**Select the End Year**')
+            end_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 22)
         with col2:
-            latitude_input,longitude_input = lat_long_ui(1,2)
+            # latitude_input,longitude_input = lat_long_ui(1,2)
+            st.markdown('**Enter the latitude**')
+            latitude_input = st.text_input('','12.55',key = 132)
+            st.markdown('**Enter the longitude**')
+            longitude_input = st.text_input('','42.45',key = 223)
 
 
         latitude_input,longitude_input= float(latitude_input),float(longitude_input)
@@ -201,10 +227,23 @@ def run():
     elif data_type == 'Monthly Average Precipitation':
         col1,col2 = st.columns(2)
         with col1:
-            start_year,end_year = year_selection_ui(9,10)
+            # start_year,end_year = year_selection_ui(9,10)
+            st.markdown('**Select the Start Year**')
+            start_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 9)
+
+            st.markdown('**Select the End Year**')
+            end_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 10)
         with col2:
             #calling the ui method to create a lat long input UI
-            latitude_input,longitude_input = lat_long_ui(3,4)
+            # latitude_input,longitude_input = lat_long_ui(3,4)
+            st.markdown('**Enter the latitude**')
+            latitude_input = st.text_input('','12.55',key = 134)
+            st.markdown('**Enter the longitude**')
+            longitude_input = st.text_input('','42.45',key = 256)
 
         latitude_input,longitude_input= float(latitude_input),float(longitude_input)
         nearest_lat_long = search_func(latitude_input,longitude_input,lat_long_precipitation_list,precipitation)
@@ -259,10 +298,23 @@ def run():
     elif data_type == 'Annual Maximum Precipitation':
         col1,col2 = st.columns(2)
         with col1:
-            start_year,end_year = year_selection_ui(11,12)
+            # start_year,end_year = year_selection_ui(11,12)
+            st.markdown('**Select the Start Year**')
+            start_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 111)
+
+            st.markdown('**Select the End Year**')
+            end_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key =222)
         with col2:
             #calling the ui method to create a lat long input UI
-            latitude_input,longitude_input = lat_long_ui(5,6)
+            # latitude_input,longitude_input = lat_long_ui(5,6)
+            st.markdown('**Enter the latitude**')
+            latitude_input = st.text_input('','12.55',key = 145)
+            st.markdown('**Enter the longitude**')
+            longitude_input = st.text_input('','42.45',key = 267)
 
         latitude_input,longitude_input= float(latitude_input),float(longitude_input)
         nearest_lat_long = search_func(latitude_input,longitude_input,lat_long_precipitation_list,precipitation)
@@ -309,10 +361,23 @@ def run():
     elif data_type == 'Annual Minimum Precipitation':
         col1,col2 = st.columns(2)
         with col1:
-            start_year,end_year = year_selection_ui(13,14)
+            # start_year,end_year = year_selection_ui(13,14)
+            st.markdown('**Select the Start Year**')
+            start_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 13)
+
+            st.markdown('**Select the End Year**')
+            end_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 14)
         with col2:
             #calling the ui method to create a lat long input UI
-            latitude_input,longitude_input = lat_long_ui(7,8)
+            # latitude_input,longitude_input = lat_long_ui(7,8)
+            st.markdown('**Enter the latitude**')
+            latitude_input = st.text_input('','12.55',key = 109)
+            st.markdown('**Enter the longitude**')
+            longitude_input = st.text_input('','42.45',key = 209)
 
         latitude_input,longitude_input= float(latitude_input),float(longitude_input)
         nearest_lat_long = search_func(latitude_input,longitude_input,lat_long_precipitation_list,precipitation)
@@ -361,10 +426,23 @@ def run():
     elif data_type == 'Annual Average Precipitation':
         col1,col2 = st.columns(2)
         with col1:
-            start_year,end_year = year_selection_ui(15,16)
+            # start_year,end_year = year_selection_ui(15,16)
+            st.markdown('**Select the Start Year**')
+            start_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 15)
+
+            st.markdown('**Select the End Year**')
+            end_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 26)
         with col2:
             #calling the ui method to create a lat long input UI
-            latitude_input,longitude_input = lat_long_ui(9,10)
+            # latitude_input,longitude_input = lat_long_ui(9,10)
+            st.markdown('**Enter the latitude**')
+            latitude_input = st.text_input('','12.55',key = 198)
+            st.markdown('**Enter the longitude**')
+            longitude_input = st.text_input('','42.45',key =298)
 
         latitude_input,longitude_input= float(latitude_input),float(longitude_input)
         nearest_lat_long = search_func(latitude_input,longitude_input,lat_long_precipitation_list,precipitation)
@@ -409,10 +487,23 @@ def run():
     elif data_type == 'Annual Max, Min, & Average Precipitation':
         col1,col2 = st.columns(2)
         with col1:
-            start_year,end_year = year_selection_ui(17,18)
+            # start_year,end_year = year_selection_ui(17,18)
+            st.markdown('**Select the Start Year**')
+            start_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 1111)
+
+            st.markdown('**Select the End Year**')
+            end_year = st.selectbox('',
+                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
+                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 2222)
 
         with col2:
-            latitude_input,longitude_input = lat_long_ui(11,12)
+            # latitude_input,longitude_input = lat_long_ui(11,12)
+            st.markdown('**Enter the latitude**')
+            latitude_input = st.text_input('','12.55',key = 186)
+            st.markdown('**Enter the longitude**')
+            longitude_input = st.text_input('','42.45',key = 2543)
 
         latitude_input,longitude_input= float(latitude_input),float(longitude_input)
         nearest_lat_long = search_func(latitude_input,longitude_input,lat_long_precipitation_list,precipitation)
