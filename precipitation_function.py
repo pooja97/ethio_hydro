@@ -103,6 +103,7 @@ def daily_precp_plot(df):
     fig.update_layout(title = "Daily Precipitation")
     return fig
 
+@st.cache(suppress_st_warning=True)
 def start_end_date_ui(start,end,key1,key2):
     st.markdown('**Enter Start Date**')
     start = st.date_input("",value = start,key = key1)
