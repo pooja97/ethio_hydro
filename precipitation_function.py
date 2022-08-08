@@ -23,22 +23,11 @@ warnings.filterwarnings("ignore")
 from pandarallel import pandarallel
 pandarallel.initialize(progress_bar=True)
 
-# from google.oauth2 import service_account
-# from google.cloud import storage
 
-# Create API client.
-# credentials = service_account.Credentials.from_service_account_info(
-#     st.secrets["gcp_service_account"]
-# )
-# client = storage.Client(credentials=credentials)
-#
-# @st.cache(allow_output_mutation = True)
-# def read_file(bucket_name, file_path):
-#     bucket = client.bucket(bucket_name)
-#     data = bucket.blob(file_path).download_as_bytes()
-#     df = pd.read_csv(io.BytesIO(data),compression='zip')
-#     return df
-
+@st.cache(allow_output_mutation=True)
+def main_concat(a,b,c):
+    z = pd.concat([a,b,c],ignore_index = True)
+    return z
 
 
 

@@ -12,7 +12,7 @@ from precipitation_function import date_split,lat_long_process_precp
 from precipitation_function import concat_func, drop_dup_funct,lat_long_type
 from precipitation_function import daily_precp_plot,start_end_date_ui,lat_long_ui,year_selection_ui
 from precipitation_function import monthly_mean_plot, annual_max_precip_plot,daily_precp_data,cumulative_plot
-from precipitation_function import annual_max_precip_plot,annual_min_precip_plot,annual_avg_plot,max_precip,min_precip,avg_precip,cumulative
+from precipitation_function import annual_max_precip_plot,annual_min_precip_plot,annual_avg_plot,max_precip,min_precip,avg_precip,cumulative,main_concat
 
 from temperature_functions import convert_df, map_creation, search_func
 
@@ -23,26 +23,6 @@ def run():
     nn = 0
     start = pd.to_datetime('2001/01/01')
     end = pd.to_datetime('2019/12/31')
-
-    #precipitation data
-    # bucket_name = "timeseries_data_storage"
-    # file_path_1 = "precip_data/precip1.zip"
-    # file_path_2 = "precip_data/precip2.zip"
-    # file_path_3 = "precip_data/precip3.zip"
-    # file_path_4 = "precip_data/precip4.zip"
-    # file_path_5 = "precip_data/precip5.zip"
-    # file_path_6 = "precip_data/precip6.zip"
-    # file_path_7 = "precip_data/precip7.zip"
-    # file_path_8 = "precip_data/precip8.zip"
-    # file_path_9 = "precip_data/precip9.zip"
-    # file_path_10 = "precip_data/precip10.zip"
-    # file_path_11 = "precip_data/precip11.zip"
-    # file_path_12 = "precip_data/precip12.zip"
-    # file_path_13 = "precip_data/precip13.zip"
-    # file_path_14 = "precip_data/precip14.zip"
-    # file_path_15 = "precip_data/precip15.zip"
-    # file_path_16 = "precip_data/precip16.zip"
-
 
 
     precipitation_1_og = pd.read_csv('historicalData/precip1.zip',compression = 'zip')
@@ -57,10 +37,10 @@ def run():
     precipitation_10_og = pd.read_csv('historicalData/precip10.zip',compression = 'zip')
     precipitation_11_og = pd.read_csv('historicalData/precip11.zip',compression = 'zip')
     precipitation_12_og = pd.read_csv('historicalData/precip12.zip',compression = 'zip')
-    precipitation_13_og = pd.read_csv('historicalData/precip13.zip',compression = 'zip')
-    precipitation_14_og = pd.read_csv('historicalData/precip14.zip',compression = 'zip')
-    precipitation_15_og = pd.read_csv('historicalData/precip15.zip',compression = 'zip')
-    precipitation_16_og = pd.read_csv('historicalData/precip16.zip',compression = 'zip')
+    # precipitation_13_og = pd.read_csv('historicalData/precip13.zip',compression = 'zip')
+    # precipitation_14_og = pd.read_csv('historicalData/precip14.zip',compression = 'zip')
+    # precipitation_15_og = pd.read_csv('historicalData/precip15.zip',compression = 'zip')
+    # precipitation_16_og = pd.read_csv('historicalData/precip16.zip',compression = 'zip')
 
 
     lat_long_precipitation_1 = precipitation_1_og['lat_long']
@@ -75,25 +55,26 @@ def run():
     lat_long_precipitation_10 = precipitation_10_og['lat_long']
     lat_long_precipitation_11 = precipitation_11_og['lat_long']
     lat_long_precipitation_12 = precipitation_12_og['lat_long']
-    lat_long_precipitation_13 = precipitation_13_og['lat_long']
-    lat_long_precipitation_14 = precipitation_14_og['lat_long']
-    lat_long_precipitation_15 = precipitation_15_og['lat_long']
-    lat_long_precipitation_16 = precipitation_16_og['lat_long']
+    # lat_long_precipitation_13 = precipitation_13_og['lat_long']
+    # lat_long_precipitation_14 = precipitation_14_og['lat_long']
+    # lat_long_precipitation_15 = precipitation_15_og['lat_long']
+    # lat_long_precipitation_16 = precipitation_16_og['lat_long']
 
 
 
     lat_long_precipitation_list_1 = concat_func(lat_long_precipitation_1,lat_long_precipitation_2,lat_long_precipitation_3,lat_long_precipitation_4)
     lat_long_precipitation_list_2 = concat_func(lat_long_precipitation_5,lat_long_precipitation_6,lat_long_precipitation_7,lat_long_precipitation_8)
     lat_long_precipitation_list_3 = concat_func(lat_long_precipitation_9,lat_long_precipitation_10,lat_long_precipitation_11,lat_long_precipitation_12)
-    lat_long_precipitation_list_4 = concat_func(lat_long_precipitation_13,lat_long_precipitation_14,lat_long_precipitation_15,lat_long_precipitation_16)
-    lat_long_precipitation_list   = concat_func(lat_long_precipitation_list_1,lat_long_precipitation_list_2,lat_long_precipitation_list_3,lat_long_precipitation_list_4)
+
+    # lat_long_precipitation_list_4 = concat_func(lat_long_precipitation_13,lat_long_precipitation_14,lat_long_precipitation_15,lat_long_precipitation_16)
+    lat_long_precipitation_list   = main_concat(lat_long_precipitation_list_1,lat_long_precipitation_list_2,lat_long_precipitation_list_3)
 
 
     precipitation_conc_1 = concat_func(precipitation_1_og,precipitation_2_og,precipitation_3_og,precipitation_4_og)
     precipitation_conc_2 = concat_func(precipitation_5_og,precipitation_6_og,precipitation_7_og,precipitation_8_og)
     precipitation_conc_3 = concat_func(precipitation_9_og,precipitation_10_og,precipitation_11_og,precipitation_12_og)
-    precipitation_conc_4 = concat_func(precipitation_13_og,precipitation_14_og,precipitation_15_og,precipitation_16_og)
-    precipitation = concat_func(precipitation_conc_1,precipitation_conc_2,precipitation_conc_3,precipitation_conc_4)
+    # precipitation_conc_4 = concat_func(precipitation_13_og,precipitation_14_og,precipitation_15_og,precipitation_16_og)
+    precipitation = main_concat(precipitation_conc_1,precipitation_conc_2,precipitation_conc_3)
 
     # precipitation = precipitation.drop([Unnamed:0.2,Unnamed:0.1,Unnamed:0],axis =1)
     precipitation.drop(precipitation.filter(regex="Unnamed"),axis=1, inplace=True)

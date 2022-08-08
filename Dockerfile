@@ -1,6 +1,6 @@
-FROM python:3.9.12
+FROM lucone83/streamlit-nginx:python3.8
 
-WORKDIR /ethio_hydro
+WORKDIR /ethio_hydro_main/ethio_hydro
 
 # Upgrade pip and install requirements
 
