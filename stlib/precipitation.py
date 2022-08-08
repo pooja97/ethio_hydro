@@ -8,7 +8,7 @@ from streamlit_folium import st_folium
 from branca.element import Figure
 
 
-from precipitation_function import date_split,lat_long_process_precp
+from precipitation_function import date_split,lat_long_process_precp,load_data
 from precipitation_function import concat_func, drop_dup_funct,lat_long_type
 from precipitation_function import daily_precp_plot,start_end_date_ui,lat_long_ui,year_selection_ui
 from precipitation_function import monthly_mean_plot, annual_max_precip_plot,daily_precp_data,cumulative_plot
@@ -24,23 +24,23 @@ def run():
     start = pd.to_datetime('2001/01/01')
     end = pd.to_datetime('2019/12/31')
 
-
-    precipitation_1_og = pd.read_csv('historicalData/precip1.zip',compression = 'zip')
-    precipitation_2_og = pd.read_csv('historicalData/precip2.zip',compression = 'zip')
-    precipitation_3_og = pd.read_csv('historicalData/precip3.zip',compression = 'zip')
-    precipitation_4_og = pd.read_csv('historicalData/precip4.zip',compression = 'zip')
-    precipitation_5_og = pd.read_csv('historicalData/precip5.zip',compression = 'zip')
-    precipitation_6_og = pd.read_csv('historicalData/precip6.zip',compression = 'zip')
-    precipitation_7_og = pd.read_csv('historicalData/precip7.zip',compression = 'zip')
-    precipitation_8_og = pd.read_csv('historicalData/precip8.zip',compression = 'zip')
-    # precipitation_9_og = pd.read_csv('historicalData/precip9.zip',compression = 'zip')
-    # precipitation_10_og = pd.read_csv('historicalData/precip10.zip',compression = 'zip')
-    # precipitation_11_og = pd.read_csv('historicalData/precip11.zip',compression = 'zip')
-    # precipitation_12_og = pd.read_csv('historicalData/precip12.zip',compression = 'zip')
-    # precipitation_13_og = pd.read_csv('historicalData/precip13.zip',compression = 'zip')
-    # precipitation_14_og = pd.read_csv('historicalData/precip14.zip',compression = 'zip')
-    # precipitation_15_og = pd.read_csv('historicalData/precip15.zip',compression = 'zip')
-    # precipitation_16_og = pd.read_csv('historicalData/precip16.zip',compression = 'zip')
+    p1 = 'historicalData/precip1.zip'
+    p2 = 'historicalData/precip2.zip'
+    p3 = 'historicalData/precip3.zip'
+    p4 = 'historicalData/precip4.zip'
+    p5 = 'historicalData/precip5.zip'
+    p6 = 'historicalData/precip6.zip'
+    p7 = 'historicalData/precip7.zip'
+    p8 = 'historicalData/precip8.zip'
+    
+    precipitation_1_og = load_data(p1)
+    precipitation_2_og = load_data(p2)
+    precipitation_3_og = load_data(p3)
+    precipitation_4_og = load_data(p4)
+    precipitation_5_og = load_data(p5)
+    precipitation_6_og = load_data(p6)
+    precipitation_7_og = load_data(p7)
+    precipitation_8_og = load_data(p8)
 
 
     lat_long_precipitation_1 = precipitation_1_og['lat_long']
@@ -51,34 +51,20 @@ def run():
     lat_long_precipitation_6 = precipitation_6_og['lat_long']
     lat_long_precipitation_7 = precipitation_7_og['lat_long']
     lat_long_precipitation_8 = precipitation_8_og['lat_long']
-    # lat_long_precipitation_9 = precipitation_9_og['lat_long']
-    # lat_long_precipitation_10 = precipitation_10_og['lat_long']
-    # lat_long_precipitation_11 = precipitation_11_og['lat_long']
-    # lat_long_precipitation_12 = precipitation_12_og['lat_long']
-    # lat_long_precipitation_13 = precipitation_13_og['lat_long']
-    # lat_long_precipitation_14 = precipitation_14_og['lat_long']
-    # lat_long_precipitation_15 = precipitation_15_og['lat_long']
-    # lat_long_precipitation_16 = precipitation_16_og['lat_long']
 
 
 
     lat_long_precipitation_list_1 = concat_func(lat_long_precipitation_1,lat_long_precipitation_2,lat_long_precipitation_3,lat_long_precipitation_4)
     lat_long_precipitation_list_2 = concat_func(lat_long_precipitation_5,lat_long_precipitation_6,lat_long_precipitation_7,lat_long_precipitation_8)
-    # lat_long_precipitation_list_3 = concat_func(lat_long_precipitation_9,lat_long_precipitation_10,lat_long_precipitation_11,lat_long_precipitation_12)
-
-    # lat_long_precipitation_list_4 = concat_func(lat_long_precipitation_13,lat_long_precipitation_14,lat_long_precipitation_15,lat_long_precipitation_16)
     lat_long_precipitation_list   = main_concat(lat_long_precipitation_list_1,lat_long_precipitation_list_2)
 
 
     precipitation_conc_1 = concat_func(precipitation_1_og,precipitation_2_og,precipitation_3_og,precipitation_4_og)
     precipitation_conc_2 = concat_func(precipitation_5_og,precipitation_6_og,precipitation_7_og,precipitation_8_og)
-    # precipitation_conc_3 = concat_func(precipitation_9_og,precipitation_10_og,precipitation_11_og,precipitation_12_og)
-    # precipitation_conc_4 = concat_func(precipitation_13_og,precipitation_14_og,precipitation_15_og,precipitation_16_og)
     precipitation = main_concat(precipitation_conc_1,precipitation_conc_2)
 
     # precipitation = precipitation.drop([Unnamed:0.2,Unnamed:0.1,Unnamed:0],axis =1)
     precipitation.drop(precipitation.filter(regex="Unnamed"),axis=1, inplace=True)
-    # st.write(precipitation.head())
     precipitation_temp = precipitation.copy()
     precipitation_temp = precipitation_temp.groupby('lat_long')
 
@@ -158,16 +144,7 @@ def run():
         col1,col2 = st.columns(2)
         with col1:
             #calling the ui method to create a start end date input UI
-            # start,end = start_end_date_ui(start,end,11,22)
-            st.markdown('**Select the Start Year**')
-            start_year = st.selectbox('',
-                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
-                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key=11)
-
-            st.markdown('**Select the End Year**')
-            end_year = st.selectbox('',
-                                      ('2001','2002','2003','2004','2005','2006','2007','2008','2009',
-                                      '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019'),key = 22)
+            start,end = start_end_date_ui(start,end,11,22)
         with col2:
             # latitude_input,longitude_input = lat_long_ui(1,2)
             st.markdown('**Enter the latitude**')

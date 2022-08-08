@@ -29,7 +29,10 @@ def main_concat(a,b):
     z = pd.concat([a,b],ignore_index = True)
     return z
 
-
+@st.cache(allow_output_mutation=True)
+def load_data(path):
+    df = pd.read_csv(path,compression = 'zip')
+    return df
 
 @st.cache
 def date_split(df):
