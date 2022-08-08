@@ -26,7 +26,7 @@ pandarallel.initialize(progress_bar=True)
 
 @st.cache(allow_output_mutation=True)
 def main_concat(a,b):
-    z = pd.concat([a,b,c],ignore_index = True)
+    z = pd.concat([a,b],ignore_index = True)
     return z
 
 
