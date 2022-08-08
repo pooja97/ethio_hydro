@@ -33,10 +33,10 @@ def run():
     precipitation_6_og = pd.read_csv('historicalData/precip6.zip',compression = 'zip')
     precipitation_7_og = pd.read_csv('historicalData/precip7.zip',compression = 'zip')
     precipitation_8_og = pd.read_csv('historicalData/precip8.zip',compression = 'zip')
-    precipitation_9_og = pd.read_csv('historicalData/precip9.zip',compression = 'zip')
-    precipitation_10_og = pd.read_csv('historicalData/precip10.zip',compression = 'zip')
-    precipitation_11_og = pd.read_csv('historicalData/precip11.zip',compression = 'zip')
-    precipitation_12_og = pd.read_csv('historicalData/precip12.zip',compression = 'zip')
+    # precipitation_9_og = pd.read_csv('historicalData/precip9.zip',compression = 'zip')
+    # precipitation_10_og = pd.read_csv('historicalData/precip10.zip',compression = 'zip')
+    # precipitation_11_og = pd.read_csv('historicalData/precip11.zip',compression = 'zip')
+    # precipitation_12_og = pd.read_csv('historicalData/precip12.zip',compression = 'zip')
     # precipitation_13_og = pd.read_csv('historicalData/precip13.zip',compression = 'zip')
     # precipitation_14_og = pd.read_csv('historicalData/precip14.zip',compression = 'zip')
     # precipitation_15_og = pd.read_csv('historicalData/precip15.zip',compression = 'zip')
@@ -51,10 +51,10 @@ def run():
     lat_long_precipitation_6 = precipitation_6_og['lat_long']
     lat_long_precipitation_7 = precipitation_7_og['lat_long']
     lat_long_precipitation_8 = precipitation_8_og['lat_long']
-    lat_long_precipitation_9 = precipitation_9_og['lat_long']
-    lat_long_precipitation_10 = precipitation_10_og['lat_long']
-    lat_long_precipitation_11 = precipitation_11_og['lat_long']
-    lat_long_precipitation_12 = precipitation_12_og['lat_long']
+    # lat_long_precipitation_9 = precipitation_9_og['lat_long']
+    # lat_long_precipitation_10 = precipitation_10_og['lat_long']
+    # lat_long_precipitation_11 = precipitation_11_og['lat_long']
+    # lat_long_precipitation_12 = precipitation_12_og['lat_long']
     # lat_long_precipitation_13 = precipitation_13_og['lat_long']
     # lat_long_precipitation_14 = precipitation_14_og['lat_long']
     # lat_long_precipitation_15 = precipitation_15_og['lat_long']
@@ -64,17 +64,17 @@ def run():
 
     lat_long_precipitation_list_1 = concat_func(lat_long_precipitation_1,lat_long_precipitation_2,lat_long_precipitation_3,lat_long_precipitation_4)
     lat_long_precipitation_list_2 = concat_func(lat_long_precipitation_5,lat_long_precipitation_6,lat_long_precipitation_7,lat_long_precipitation_8)
-    lat_long_precipitation_list_3 = concat_func(lat_long_precipitation_9,lat_long_precipitation_10,lat_long_precipitation_11,lat_long_precipitation_12)
+    # lat_long_precipitation_list_3 = concat_func(lat_long_precipitation_9,lat_long_precipitation_10,lat_long_precipitation_11,lat_long_precipitation_12)
 
     # lat_long_precipitation_list_4 = concat_func(lat_long_precipitation_13,lat_long_precipitation_14,lat_long_precipitation_15,lat_long_precipitation_16)
-    lat_long_precipitation_list   = main_concat(lat_long_precipitation_list_1,lat_long_precipitation_list_2,lat_long_precipitation_list_3)
+    lat_long_precipitation_list   = main_concat(lat_long_precipitation_list_1,lat_long_precipitation_list_2)
 
 
     precipitation_conc_1 = concat_func(precipitation_1_og,precipitation_2_og,precipitation_3_og,precipitation_4_og)
     precipitation_conc_2 = concat_func(precipitation_5_og,precipitation_6_og,precipitation_7_og,precipitation_8_og)
-    precipitation_conc_3 = concat_func(precipitation_9_og,precipitation_10_og,precipitation_11_og,precipitation_12_og)
+    # precipitation_conc_3 = concat_func(precipitation_9_og,precipitation_10_og,precipitation_11_og,precipitation_12_og)
     # precipitation_conc_4 = concat_func(precipitation_13_og,precipitation_14_og,precipitation_15_og,precipitation_16_og)
-    precipitation = main_concat(precipitation_conc_1,precipitation_conc_2,precipitation_conc_3)
+    precipitation = main_concat(precipitation_conc_1,precipitation_conc_2)
 
     # precipitation = precipitation.drop([Unnamed:0.2,Unnamed:0.1,Unnamed:0],axis =1)
     precipitation.drop(precipitation.filter(regex="Unnamed"),axis=1, inplace=True)
