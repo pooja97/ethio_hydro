@@ -144,7 +144,16 @@ def run():
         col1,col2 = st.columns(2)
         with col1:
             #calling the ui method to create a start end date input UI
-            start,end = start_end_date_ui(start,end,11,22)
+            # start,end = start_end_date_ui(start,end,11,22)
+            st.markdown('**Enter Start Date**')
+            start = st.date_input("",value = start,key = 9000)
+            if start < pd.to_datetime('2001/01/01'):
+                st.write('Start date should not be less than 2001/01/01')
+
+            st.markdown('**Enter End Date**')
+            end = st.date_input("",value = end, key = 090)
+            if end > pd.to_datetime('2019/12/31'):
+                st.write('End date should not be greater than 2019/12/31')
         with col2:
             # latitude_input,longitude_input = lat_long_ui(1,2)
             st.markdown('**Enter the latitude**')
