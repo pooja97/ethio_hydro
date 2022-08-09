@@ -53,8 +53,8 @@ def drop_dup_funct(x):
     return x
 
 @st.cache(allow_output_mutation = True)
-def concat_func(x,y,a,b):
-    z = pd.concat([x,y,a,b],ignore_index = True)
+def concat_func(x,y):
+    z = pd.concat([x,y],ignore_index = True)
     return z
 
 @st.cache
