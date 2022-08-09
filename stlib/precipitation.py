@@ -28,40 +28,43 @@ def run():
     p2 = 'historicalData/precip2.zip'
     p3 = 'historicalData/precip3.zip'
     p4 = 'historicalData/precip4.zip'
-    p5 = 'historicalData/precip5.zip'
-    p6 = 'historicalData/precip6.zip'
-    p7 = 'historicalData/precip7.zip'
-    p8 = 'historicalData/precip8.zip'
+    # p5 = 'historicalData/precip5.zip'
+    # p6 = 'historicalData/precip6.zip'
+    # p7 = 'historicalData/precip7.zip'
+    # p8 = 'historicalData/precip8.zip'
 
     precipitation_1_og = load_data(p1)
     precipitation_2_og = load_data(p2)
     precipitation_3_og = load_data(p3)
     precipitation_4_og = load_data(p4)
-    precipitation_5_og = load_data(p5)
-    precipitation_6_og = load_data(p6)
-    precipitation_7_og = load_data(p7)
-    precipitation_8_og = load_data(p8)
+    # precipitation_5_og = load_data(p5)
+    # precipitation_6_og = load_data(p6)
+    # precipitation_7_og = load_data(p7)
+    # precipitation_8_og = load_data(p8)
 
 
     lat_long_precipitation_1 = precipitation_1_og['lat_long']
     lat_long_precipitation_2 = precipitation_2_og['lat_long']
     lat_long_precipitation_3 = precipitation_3_og['lat_long']
     lat_long_precipitation_4 = precipitation_4_og['lat_long']
-    lat_long_precipitation_5 = precipitation_5_og['lat_long']
-    lat_long_precipitation_6 = precipitation_6_og['lat_long']
-    lat_long_precipitation_7 = precipitation_7_og['lat_long']
-    lat_long_precipitation_8 = precipitation_8_og['lat_long']
+    # lat_long_precipitation_5 = precipitation_5_og['lat_long']
+    # lat_long_precipitation_6 = precipitation_6_og['lat_long']
+    # lat_long_precipitation_7 = precipitation_7_og['lat_long']
+    # lat_long_precipitation_8 = precipitation_8_og['lat_long']
 
 
 
-    lat_long_precipitation_list_1 = concat_func(lat_long_precipitation_1,lat_long_precipitation_2,lat_long_precipitation_3,lat_long_precipitation_4)
-    lat_long_precipitation_list_2 = concat_func(lat_long_precipitation_5,lat_long_precipitation_6,lat_long_precipitation_7,lat_long_precipitation_8)
-    lat_long_precipitation_list   = main_concat(lat_long_precipitation_list_1,lat_long_precipitation_list_2)
+    # lat_long_precipitation_list_1 = concat_func(lat_long_precipitation_1,lat_long_precipitation_2,lat_long_precipitation_3,lat_long_precipitation_4)
+    lat_long_precipitation_list = concat_func(lat_long_precipitation_1,lat_long_precipitation_2,lat_long_precipitation_3,lat_long_precipitation_4)
+    # lat_long_precipitation_list_2 = concat_func(lat_long_precipitation_5,lat_long_precipitation_6,lat_long_precipitation_7,lat_long_precipitation_8)
+    # lat_long_precipitation_list   = main_concat(lat_long_precipitation_list_1,lat_long_precipitation_list_2)
 
 
-    precipitation_conc_1 = concat_func(precipitation_1_og,precipitation_2_og,precipitation_3_og,precipitation_4_og)
-    precipitation_conc_2 = concat_func(precipitation_5_og,precipitation_6_og,precipitation_7_og,precipitation_8_og)
-    precipitation = main_concat(precipitation_conc_1,precipitation_conc_2)
+    # precipitation_conc_1 = concat_func(precipitation_1_og,precipitation_2_og,precipitation_3_og,precipitation_4_og)
+    precipitation = concat_func(precipitation_1_og,precipitation_2_og,precipitation_3_og,precipitation_4_og)
+
+    # precipitation_conc_2 = concat_func(precipitation_5_og,precipitation_6_og,precipitation_7_og,precipitation_8_og)
+    # precipitation = main_concat(precipitation_conc_1,precipitation_conc_2)
 
     # precipitation = precipitation.drop([Unnamed:0.2,Unnamed:0.1,Unnamed:0],axis =1)
     precipitation.drop(precipitation.filter(regex="Unnamed"),axis=1, inplace=True)

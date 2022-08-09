@@ -1,4 +1,4 @@
-FROM lucone83/streamlit-nginx:python3.8
+FROM python:3.8
 
 WORKDIR /ethio_hydro_main/ethio_hydro
 
