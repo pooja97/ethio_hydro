@@ -1,3 +1,4 @@
+
 #### Created a dashboard using Streamlit and Python to monitor 67 million Ethiopia's rain and temperature time series data collected from the SWAT database. 
 #### Cleaned the data using geoPy module to filter the Ethiopia's data and implemented parallel processing using Swifter and Pandarallel to manipulate data. 
 #### Added functionalities to display daily average temperature, monthly mean temperature, Annual Max, Min and Avg temperature, Daily precipitation, min,max and avg precipitation, Cumulative and monthly avg precipitation. 
