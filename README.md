@@ -1,3 +1,20 @@
+# Time Series Data Analytics | Streamlit and Docker
+
+## Introduction
+
+Data Analytics on Ethiopia's rain and temperature data collected from the [SWAT](https://swat.tamu.edu/data/) database using various tools and technologies, including Streamlit, python3, Docker, and plotly.js
+
+## Technologies Used
+Programming Language: 
+    1. python3
+
+Tools and Data Visualization:
+    1. Docker <br>
+    2. Streamlit <br>
+    3. Folium
+    4. plotly.js
+
+
 
 #### Created a dashboard using Streamlit and Python to monitor 67 million Ethiopia's rain and temperature time series data collected from the SWAT database. 
 #### Cleaned the data using geoPy module to filter the Ethiopia's data and implemented parallel processing using Swifter and Pandarallel to manipulate data. 
