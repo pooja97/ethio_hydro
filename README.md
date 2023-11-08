@@ -1,4 +1,4 @@
-# Time Series Data Analysis | Streamlit and Docker
+# Time Series GeoSpatial Data Analysis | Streamlit and Docker
 
 ## Introduction
 
